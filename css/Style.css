@@ -578,4 +578,20 @@ footer.footer .move-up span:hover{
 
 }
 
+.boton-pronostico{
+    font-family: var(--Lexend);
+    
+    margin: auto;
+    padding: .6rem;
+    border-radius: 2rem;
+    color: rgb(0, 0, 0);
+    background-color: #a1c4cf;
+    border-style: none;
+}
+
+.boton-pronostico:hover{
+    background-color: #5a8ee2;
+    color: aliceblue;
+}
+
 /*        x      Viewport less then or equal to 520px       x     */
