@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<title>Mapa terremotos</title>
+
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+
+   <style type="text/css">
+
+    body{
+        background: rgb(192, 174, 152);  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #ffffff, #ffffff, #ffffff);  /* Chrome 10-25, Safari 5.1-6 */ 
+        background: linear-gradient(to right, #ffffff, #ffffff, rgb(255, 255, 255) 19, 12); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }
+
+   	#issMap { 
+   		height: 400px;
+   		width: 100%;
+   		
+   	}
+
+    #btn{
+        width: 100%;
+    }
+
+   </style>
+
+</head>
+<body>
+    <br></br>
+    <div class="container">
+        <h1>TERREMOTOS</h1>
+    </div>
+    <br></br>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <label>Fecha de inicio</label>
+                <input type="date" id="date-start" class="form-control shadow">
+            </div>
+            <div class="col">
+                <label> Fecha de finalización</label>
+                <input type="date" id="date-end" class="form-control shadow">
+            </div>
+
+            <div class="col">
+                <button class="btn btn-primary mt-4" id="btn">Mostrar</button>
+            </div>
+        </div> 
+    </div>
+	<br></br>
+	<div class="container mt-3">
+		<div id="issMap" class="mx-auto shadow"></div>
+		<div id="datos">
+			
+		</div>
+	</div>
+	
+	 
+
+
+	<script type="text/javascript">
+
+		//------ Mapa y fondo (tiles) -----------------------
+
+		const mymap = L.map('issMap').setView([23.634501, -98.552784], 4.5); //lat, lon, zoom level
+		const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+		const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		const tiles = L.tileLayer(tileUrl, { attribution });
+		tiles.addTo(mymap);
+
+		//------- Acceso a la API ----------------------------
+
+        //https://earthquake.usgs.gov/
+        //earthquakes
+        //Realtime notifications
+        //web services
+        //web apis - earthquakes
+
+		const api_url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson';
+
+		async function getData(start, end){
+            mymap.eachLayer((layer) => {
+                layer.remove();
+            });
+ 
+		    tiles.addTo(mymap);
+			//obtenemos los datos de la API:
+			const response = await fetch(api_url + start + end);
+			//Convertimos el archivo recibido en JSON a objeto js:
+			const data = await response.json();
+			console.log(data);
+
+			for(let i = 0; i < data.features.length; i++){
+
+                //------ Marcador de posición-----------------
+
+		        let r = data.features[i].properties.mag * 1.5;
+                let lat = data.features[i].geometry.coordinates[1];
+                let lon = data.features[i].geometry.coordinates[0];
+
+                const circle = L.circleMarker([0, 0], {
+                    radius: r,
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.5,        
+                }).addTo(mymap);
+                circle.setLatLng([lat, lon]);
+                let dateMs = new Date(data.features[i].properties.time);
+                let date = dateMs.toUTCString();
+			    circle.bindTooltip("<h5>"+data.features[i].properties.place+"</h5><p>Magnitud: " + data.features[i].properties.mag + "</p>" + "<p>" + date + "</p>" );
+
+            }
+		}
+
+        document.getElementById("btn").onclick = () => {
+            
+            let start = "&starttime=" + document.getElementById("date-start").value;
+            let end = "&endtime=" + document.getElementById("date-end").value;
+            getData(start, end);
+
+        }
+
+	</script>
+<br></br><br></br>
+</body>
+</html>
