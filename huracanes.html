@@ -3,16 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Font Awesome Icons -->
+      <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css">
+
+    <!-- ------------ AOS Library ------------------------- -->
+    <link rel="stylesheet" href="./css/aos.css">
+
+    <!-- Custom Style   -->
+    <link rel="stylesheet" href="./css/Style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <title>Pronóstico Meteorológico</title>
 </head>
 <body>
-    <h1>Pronóstico Meteorológico</h1>
+      <!-- ----------------------------  Navigation ---------------------------------------------- -->
 
-    <div id="resultado"></div>
-    <div id="map" style="height: 400px;"></div>
+      <nav class="nav">
+        <div class="nav-menu flex-row">
+            <div class="nav-brand">
+                <a href="#" class="text-gray">Sistema de Monitoreo</a>
+            </div>
+            <div class="toggle-collapse">
+                <div class="toggle-icons">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+            <div>
+                <ul class="nav-items">
+                    <li class="nav-link">
+                        <a href="Index-pau.html">Inicio</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">Blogs</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="huracanes.html">Mapa Huracanes</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">Mapa Terremotos</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">Mapa Climatologico</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="social text-gray">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ------------x---------------  Navigation --------------------------x------------------- -->
+    <main>
+
+        <!------------------------ Site Title ---------------------->
+        <section>
+            <h1>Pronóstico Meteorológico</h1>
+
+            <div id="resultado"></div>
+            <div id="map" style="height: 400px;"></div>
+        </section>
+
+    </main>
+
+    
 
 
    
