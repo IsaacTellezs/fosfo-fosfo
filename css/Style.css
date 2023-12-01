@@ -11,8 +11,8 @@ html, body{
 :root{
 
     /*      Theme colors        */
-    --text-gray: #fff;
-    --text-light : #fff;
+    --text-gray: #110606;
+    --text-light : #0a0a0a;
     --bg-color: #0f0f0f;
     --white: #ffffff;
     --midnight: #7c9b9e;
@@ -91,7 +91,7 @@ p{
 /* --------------- navbar ----------------- */
 
 .nav{
-    background: rgb(1, 25, 51);
+    background: rgb(248, 249, 250);
     padding: 0 2rem;
     height: 0rem;
     min-height: 10vh;
