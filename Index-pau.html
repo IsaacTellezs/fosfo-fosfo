@@ -72,59 +72,12 @@
     <main>
 
         <!------------------------ Site Title ---------------------->
-
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-            }
-        
-            body {
-                overflow-x: hidden;
-                overflow-y: hidden;
-                /*background-color: rgb(12, 34, 54);*/
-            }
-        
-            #name {
-                position: absolute;
-                background-color: rgb(255, 255, 255);
-                width: fit-content;
-                opacity: 0;
-                border-radius: 5px;
-                border: 3px solid rgb(245, 128, 128);
-                padding: 0px 5px;
-                font-size: 1.5rem;
-        
-            }
-        
-        
-            #timeCont{
-                background-color: white;
-                width: fit-content;
-                font-size: 1.5rem;
-                padding: 5px 5px;
-                border-radius: 5px;
-                border: 3px solid rgb(245, 128, 128);        
-            }
-            
-        
-            svg path {
-                cursor: pointer;
-            }
-        
-        </style>
-        
-        <body id="body">
-        
-            <?xml version="1.0"?>
+        <section class="site-title">
+           
         
             <div id="name">
                 <p id="namep">Name</p>
             </div>
-        
-        
-        
-            <br><br><br>
         
             <svg id="allSvg" baseprofile="tiny" fill="#ececec" stroke="black" stroke-linecap="round" stroke-linejoin="round"
                 version="1.2" viewbox="0 0 2000 857" xmlns="http://www.w3.org/2000/svg">
@@ -1716,7 +1669,56 @@
             // })
         
         </script>
+        </section>
 
+        
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+        
+            body {
+                overflow-x: hidden;
+                overflow-y: hidden;
+                /*background-color: rgb(12, 34, 54);*/
+            }
+        
+            #name {
+                position: absolute;
+                background-color: rgb(255, 255, 255);
+                width: fit-content;
+                opacity: 0;
+                border-radius: 5px;
+                border: 3px solid rgb(245, 128, 128);
+                padding: 0px 5px;
+                font-size: 1.5rem;
+        
+            }
+        
+        
+            #timeCont{
+                background-color: white;
+                width: fit-content;
+                font-size: 1.5rem;
+                padding: 5px 5px;
+                border-radius: 5px;
+                border: 3px solid rgb(245, 128, 128);        
+            }
+            
+        
+            svg path {
+                cursor: pointer;
+            }
+        
+        </style>
+        
+        
+        
+           
+        
+            
         <!------------x----------- Site Title ----------x----------->
 
         <!-- --------------------- Blog Carousel ----------------- -->
@@ -1725,7 +1727,9 @@
             <div class="blog">
                 <div class="container">
                     <div class="owl-carousel owl-theme blog-post">
+                        
                         <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
+                            <h2>Conoce mas sobre los:</h2>
                             <img src="./assets/Blog-post/huracanes.jpg" alt="post-1">
                             <div class="blog-title">
                                 <h3>Huracanes</h3>
@@ -1736,6 +1740,7 @@
                             </div>
                         </div>
                         <div class="blog-content" data-aos="fade-in" data-aos-delay="200">
+                            <h2>Conoce mas sobre los:</h2>
                             <img src="./assets/Blog-post/sismo.jpg" alt="post-1">
                             <div class="blog-title">
                                 <h3>Terremotos - Sismos</h3>
@@ -1746,7 +1751,9 @@
                             </div>
                         </div>
                         <div class="blog-content" data-aos="fade-left" data-aos-delay="200">
+                            <h2>Conoce mas sobre los:</h2>
                             <img src="./assets/Blog-post/vocalnes.jpg" alt="post-1">
+                                <h2>Conoce mas sobre los:</h2>
                             <div class="blog-title">
                                 <h3>Volcanes</h3>
                                 <br>
@@ -1756,10 +1763,13 @@
                             </div>
                         </div>
                         <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
+                            <h2>Conoce mas sobre los:</h2>
                             <img src="./assets/Blog-post/tsunami.jpg" alt="post-1">
                             <div class="blog-title">
                                 <h3>Tsunamis</h3>
-                                <button class="btn btn-blog">Descarga el PDF con informacion</button>
+                                <br>
+                                <a class="btn btn-blog" href="tsunami.jpg">Descarga el PDF con informacion </a>
+                                <br><br>
                                 <span>2 minutes</span>
                             </div>
                         </div>
@@ -1781,11 +1791,12 @@
                 <div class="posts">
                     <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
                         <div class="post-image">
+                            <h2> B L O G S    P R I N C I P A L E S</h2>
                             <div>
                                 <img src="./assets/Blog-post/desastres.jpg" class="img" alt="blog1">
                             </div>
                             <div class="post-info flex-row">
-                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
+                                <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Yadziri Paulina</span>
                                 <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;Noviembre 30, 2023</span>
                                 <span>2 Commets</span>
                             </div>
@@ -1889,8 +1900,7 @@
                                 <a href="#">Donde conseguir vivieres en caso de un desastre natural</a>
                                 <span>(01)</span>
                             </li>
-                            
-                            </li>
+                          
                         </ul>
                     </div>
                     <div class="popular-post">
@@ -1898,16 +1908,18 @@
                         <div class="post-content" data-aos="flip-up" data-aos-delay="200">
                             <div class="post-image">
                                 <div>
-                                    <img src="./assets/popular-post/m-blog-2.jpg" class="img" alt="blog1">
+                                    <img src="./assets/popular-post/escaneo.jpg" class="img" alt="blog1">
                                 </div>
                                 <div class="post-info flex-row">
-                                    <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;Noviembre 30,
-                                        2023</span>
-                                    <span>2 Commets</span>
+                                    <span><i class="fas fa-calendar-alt text-gray"></i>https://chat.whatsapp.com/JJskMctTHhZIbDqcOOA0eS
+                                        </span>
+                                    </span>
                                 </div>
                             </div>
                             <div class="post-title">
-                                <a href="#">Que hacer en caso de un sismo</a>
+                                <a href="#">Untete a nuestra comunidad en Whatsapp para ser el primero en recibir
+                                    los avisos.
+                                </a>
                             </div>
                         </div>
                         <div class="post-content" data-aos="flip-up" data-aos-delay="300">
@@ -1956,13 +1968,7 @@
                             </div>
                         </div>
                         
-                    <div class="newsletter" data-aos="fade-up" data-aos-delay="300">
-                        <h2>Cuentanos tu experiencia sobre desastres naturales</h2>
-                        <div class="form-element">
-                            <input type="text" class="input-element" placeholder="Email">
-                            <button class="btn form-btn">Enviar</button>
-                        </div>
-                    </div>
+                   
                     
                     </div>
                 </aside>
