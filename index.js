@@ -22,34 +22,113 @@
             const velocidadViento = data.wind.speed;
             const direccionViento = data.wind.deg;
             const presionAtmosferica = data.main.pressure;
-            let mensajeViento = '';
-            const umbralVientoAlto = 3;
+            const humedadAtmosferica = data.main.humidity;
+        
+            
+            function clasificarVelocidadViento(velocidadViento) {
+                let categoriaViento = '';
+        
+                if (velocidadViento >= 33 && velocidadViento <= 42) {
+                    categoriaViento = "Categoría 1";
+                } else if (velocidadViento >= 43 && velocidadViento <= 49) {
+                    categoriaViento = "Categoría 2";
+                } else if (velocidadViento >= 50 && velocidadViento <= 58) {
+                    categoriaViento = "Categoría 3";
+                } else if (velocidadViento >= 59 && velocidadViento <= 70) {
+                    categoriaViento = "Categoría 4";
+                } else if (velocidadViento > 70) {
+                    categoriaViento = "Categoría 5";
+                } else {
+                    categoriaViento = "Sin clasificación";
+                }
+        
+                return categoriaViento;
+            }
+        
+            const categoriaVelocidadViento = clasificarVelocidadViento(velocidadViento);
 
-            if (velocidadViento >= 33 && velocidadViento <= 42) {
-                mensajeViento ="Categoría 1: Velocidad del viento entre 119-153 km/h (33-42 m/s)";
-            } else if (velocidadViento >= 43 && velocidadViento <= 49) {
-                mensajeViento ="Categoría 2: Velocidad del viento entre 154-177 km/h (43-49 m/s)";
-            } else if (velocidadViento >= 50 && velocidadViento <= 58) {
-                mensajeViento ="Categoría 3: Velocidad del viento entre 178-208 km/h (50-58 m/s)";
-            } else if (velocidadViento >= 59 && velocidadViento <= 70) {
-                mensajeViento ="Categoría 4: Velocidad del viento entre 209-251 km/h (59-70 m/s)";
-            } else if (velocidadViento > 70) {
-                mensajeViento ="Categoría 5: Velocidad del viento superior a 251 km/h (>70 m/s)";
-            } else {
-                mensajeViento ="";
+            function clasificarHumedad(humedadAtmosferica) {
+                let categoriaHumedad= '';
+            
+                
+                if (humedadAtmosferica < 70) {
+                    categoriaHumedad= "Categoria 1";
+                } else if (humedadAtmosferica >= 70 && humedadAtmosferica < 75) {
+                    categoriaHumedad= "Categoria 2";               
+                } else if (humedadAtmosferica >= 75 && humedadAtmosferica < 76) {
+                    categoriaHumedad= "Categoria 3";
+                } else if (humedadAtmosferica >= 76 && humedadAtmosferica < 77) {
+                    categoriaHumedad= "Categoria 4";
+                } else if (humedadAtmosferica >= 77 && humedadAtmosferica < 90) {
+                    categoriaHumedad= "Categoria 5";
+                } else {
+                    categoriaHumedad= "Sin clasificacion";
+                }
+                return categoriaHumedad;
             }
 
-    resultadoContainer.innerHTML = `
-        <h2>${data.name}, ${data.sys.country}</h2>
-        <p>Temperatura: ${temperaturaCelsius}°C</p>
-        <p>Condiciones: ${data.weather[0].description}</p>
-        <p>Velocidad del Viento: ${velocidadViento} m/s</p>
-        <p>Dirección del Viento: ${direccionViento}°</p>
-        <p> Presión atmosferica: ${presionAtmosferica} hPa</p>
-        <p>${mensajeViento}</p>
+            const categoriaHumedad = clasificarHumedad(humedadAtmosferica);
+
+            function clasificarDireccionViento(direccionViento) {
+                let categoriaDireccion ='';
+
+                if (direccionViento >= 0 && direccionViento < 90) {
+                    categoriaDireccion = "Viento del Este";
+                } else if (direccionViento >= 90 && direccionViento < 180) {
+                    categoriaDireccion = "Viento del Sur";
+                } else if (direccionViento >= 180 && direccionViento < 270) {
+                    categoriaDireccion = "Viento del Oeste";
+                } else {
+                    categoriaDireccion = "Viento del Norte";
+                }
+                return categoriaDireccion;
+            }
+
+            const categoriaDireccion = clasificarDireccionViento(direccionViento);
+
+            function clasificarTemperatura(temperaturaCelsius) {
+                let temperaturaHuracan = '';
+            
+                if (temperaturaCelsius < 0) {
+                    temperaturaHuracan = "Temperatura Muy Fría";
+                } else if (temperaturaCelsius >= 0 && temperaturaCelsius < 10) {
+                    temperaturaHuracan = "Temperatura Fría";
+                } else if (temperaturaCelsius >= 10 && temperaturaCelsius < 20) {
+                    temperaturaHuracan = "Temperatura Moderada";
+                } else if (temperaturaCelsius >= 20 && temperaturaCelsius < 30) {
+                    temperaturaHuracan = "Temperatura Cálida";
+                } else {
+                    temperaturaHuracan = "Temperatura Caliente";
+                }
+                return temperaturaHuracan;
+            }
+            const temperaturaHuracan = clasificarTemperatura(temperaturaCelsius);
+
+            function clasificarPresionAtmosferica(presionAtmosferica) {
+                let tipoPresion = '';
+
+                if (presionAtmosferica < 1000) {
+                 tipoPresion = "Presión Baja";
+                } else if (presionAtmosferica >= 1000 && presionAtmosferica < 1010) {
+                 tipoPresion = "Presión Moderada";
+                } else {
+                 tipoPresion = "Presión Alta";
+                }
+                return tipoPresion;
+            }
+
+            const tipoPresion = clasificarPresionAtmosferica(presionAtmosferica);
         
-    `;
-}
+            resultadoContainer.innerHTML = `
+                <h2>${data.name}, ${data.sys.country}</h2>
+                <p>Temperatura: ${temperaturaCelsius}°C  (${temperaturaHuracan})</p>
+                <p>Condiciones: ${data.weather[0].description}</p>
+                <p>Velocidad del Viento: ${velocidadViento} m/s (${categoriaVelocidadViento})</p>
+                <p>Dirección del Viento: ${direccionViento}° (${categoriaDireccion})</p>
+                <p>Presión atmosférica: ${presionAtmosferica} hPa (${tipoPresion})</p>
+                <p>Humedad atmosférica: ${humedadAtmosferica}% (${categoriaHumedad})</p>
+            `;
+        }
 
         function mostrarResultadoError() {
             const resultadoContainer = document.getElementById('resultado');
@@ -66,7 +145,14 @@
         
             const marcador = L.marker(coordenadas).addTo(mapa);
             marcador.bindPopup(`<b>${data.name}</b><br>${data.weather[0].description}`).openPopup();
-            console.log(data.coord.lat, data.coord.lon);
+
+
+            
+            
         }
+
+
+      
+
    
        
